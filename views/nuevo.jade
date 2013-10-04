@@ -1,0 +1,38 @@
+extends layout
+
+block content
+
+	form.form-horizontal(role="form", method="post")
+
+		.form-group
+			label.col-lg-2(for="name") Nombre de la persona
+			.col-lg-10
+				input#name.form-control(type="text", placeholder="Nombre")
+
+		.form-group
+			label.col-lg-2(for="phone1") Número de Contacto
+			.col-lg-10
+				input#phone1.form-control(type="tel", placeholder="Número de contacto")
+
+		.form-group
+			label.col-lg-2(for="weeks") ¿Cuantas Semanas de Embarazo Tiene?
+			.col-lg-10
+				input#weeks.form-control(type="number", placeholder="Semanas de Embarazo", min="1", max="45")
+
+		.form-group
+			label.col-lg-2(for="comments") Comentarios y Observaciones
+			.col-lg-10
+				textarea#comments.form-control(rows="3", placeholder="Texto libre. Ponga todo lo que considere importante.")
+
+		.form-group
+			.col-lg-10.col-lg-offset-2
+				.checkbox
+					label
+						input#is_high_risk(type="checkbox")
+						¿Es un embarazo de Alto Riesgo?
+
+
+		.col-lg-10.col-lg-offset-2
+			button.btn.btn-primary.btn-large(type="submit") Enviar
+
+

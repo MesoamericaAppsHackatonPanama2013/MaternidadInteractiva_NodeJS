@@ -1,7 +1,24 @@
 doctype 5
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+	head
+		meta(charset='UTF-8')
+		title= title
+
+		<!-- CSS -->
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel="stylesheet", href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css')
+		link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css")
+	body
+
+		div.jumbotron
+			hgroup.container
+				h1= title
+					br
+					small Sistema de Registro de Embarazos
+		
+		.container
+			block content
+
+		<!-- Scripts -->
+		script(src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+		script(src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
