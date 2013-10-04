@@ -31,6 +31,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/nuevo', routes.nuevo);
 app.post('/nuevo', routes.insertar);
+app.get('/delete', routes.eraseDatabase);
 
 app.get('/users', user.list);
 
