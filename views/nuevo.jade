@@ -2,37 +2,39 @@ extends layout
 
 block content
 
-	form.form-horizontal(role="form", method="post")
+	form.form-horizontal(role="form", method="post", action="/nuevo")
 
 		.form-group
 			label.col-lg-2(for="name") Nombre de la persona
 			.col-lg-10
-				input#name.form-control(type="text", placeholder="Nombre")
+				input#name.form-control(type="text", placeholder="Nombre", name="name")
 
 		.form-group
 			label.col-lg-2(for="phone1") Número de Contacto
 			.col-lg-10
-				input#phone1.form-control(type="tel", placeholder="Número de contacto")
+				input#phone1.form-control(type="tel", placeholder="Número de contacto", name="phone1")
 
 		.form-group
 			label.col-lg-2(for="weeks") ¿Cuantas Semanas de Embarazo Tiene?
 			.col-lg-10
-				input#weeks.form-control(type="number", placeholder="Semanas de Embarazo", min="1", max="45")
+				input#weeks.form-control(type="number", placeholder="Semanas de Embarazo", min="1", max="45", name="weeks")
 
 		.form-group
 			label.col-lg-2(for="comments") Comentarios y Observaciones
 			.col-lg-10
-				textarea#comments.form-control(rows="3", placeholder="Texto libre. Ponga todo lo que considere importante.")
+				textarea#comments.form-control(rows="3", placeholder="Texto libre. Ponga todo lo que considere importante.", name="comments")
 
 		.form-group
 			.col-lg-10.col-lg-offset-2
 				.checkbox
 					label
-						input#is_high_risk(type="checkbox")
+						input#is_high_risk(type="checkbox", name="is_high_risk")
 						¿Es un embarazo de Alto Riesgo?
 
 
 		.col-lg-10.col-lg-offset-2
-			button.btn.btn-primary.btn-large(type="submit") Enviar
+			button.btn.btn-primary.btn-lg(type="submit", name="submit")
+				i.icon-edit
+				|  Enviar
 
 

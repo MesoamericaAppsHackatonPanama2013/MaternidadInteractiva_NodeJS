@@ -3,7 +3,10 @@ extends layout
 block content
 
 	p#button-well
-		a.btn.btn-primary.btn-lg.btn-block(type="button", href="/nuevo") Usuario Nuevo
-		br
-		a.btn.btn-primary.btn-lg.btn-block(type="button", href="/existente") Usuario Existente
+		a.btn.btn-primary.btn-lg.btn-block(type="button", href="/nuevo")
+			i.icon-plus
+			|  Usuario Nuevo
+		a.btn.btn-primary.btn-lg.btn-block(type="button", href="/existente") 
+			i.icon-search
+			|  Usuario Existente
 
