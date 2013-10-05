@@ -32,6 +32,7 @@ app.get('/', routes.index);
 app.get('/nuevo', routes.nuevo);
 app.post('/nuevo', routes.insertar);
 app.get('/delete', routes.eraseDatabase);
+app.post('/alarm', routes.alarma);
 
 app.get('/users', user.list);
 

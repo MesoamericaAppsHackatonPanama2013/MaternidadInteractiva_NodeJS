@@ -2,6 +2,7 @@ var mongo = require('mongoskin');
 
 var collection = 'registros';
 var connectionString = "mongodb://nodejitsu_zubietaroberto:u63hfuu4171tlarho02sk0lic4@ds045998.mongolab.com:45998/nodejitsu_zubietaroberto_nodejitsudb2956975598";
+var BSON = mongo.BSONPure;
 
 
 function getDatabase(){
@@ -66,6 +67,47 @@ exports.insertar = function(req, res){
 	});
 }
 
-exports.eraseDatabase = function(req, res){
 
+/* 
+* GET: Delete all the data on the database
+*/
+
+exports.eraseDatabase = function(req, res){
+	getDatabase().drop(function(err, data){
+		exports.index(req, res);
+	});
+}
+
+exports.alarma = function(req, res){
+	id = req.body.id;
+	source = req.body.phone;
+
+	var response = {
+		success: false,
+		message: "No hay Identificador",
+		name: ""
+	};
+
+	if (id){
+		if (Buffer.byteLength(id, 'utf8') != 12){
+			response.message = "ID debe ser de 12 dígitos";
+			res.json(response);
+		} else {
+			getDatabase().findOne({_id: new BSON.ObjectID(id)}, function(err, registro){
+
+				if (!registro){
+					response.message = "Identificador Incorrecto";
+				} else {
+					response.success = true;
+					response.message = "OK";
+					response.name = registro.name;
+				}
+
+				res.json(response);
+			});
+
+		}
+	} else {
+		res.json(response);
+	}
 }
