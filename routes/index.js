@@ -49,7 +49,7 @@ exports.insertar = function(req, res){
 		}
 
 		if(result){
-			id = new provider.BSON.ObjectID(result._id).toString();
+			id = JSON.stringify(result);
 	    	console.log(result);
 		}
 
