@@ -103,6 +103,9 @@ exports.alarma = function(req, res){
 				} else {
 					response.message = "OK";
 					response.name = registro.name;
+
+					var mailer = require('../Mailer');
+					mailer.sendMail("zubieta.roberto.e@gmail.com", registro, source);
 				}
 
 				res.json(response);
