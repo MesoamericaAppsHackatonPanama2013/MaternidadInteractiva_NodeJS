@@ -83,7 +83,6 @@ exports.alarma = function(req, res){
 	source = req.body.phone;
 
 	var response = {
-		success: false,
 		message: "No hay Identificador",
 		name: ""
 	};
@@ -98,7 +97,6 @@ exports.alarma = function(req, res){
 				if (!registro){
 					response.message = "Identificador Incorrecto";
 				} else {
-					response.success = true;
 					response.message = "OK";
 					response.name = registro.name;
 				}
