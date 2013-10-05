@@ -1,20 +1,11 @@
-var mongo = require('mongoskin');
-
-var collection = 'registros';
-var connectionString = "mongodb://nodejitsu_zubietaroberto:u63hfuu4171tlarho02sk0lic4@ds045998.mongolab.com:45998/nodejitsu_zubietaroberto_nodejitsudb2956975598";
-var BSON = mongo.BSONPure;
-
-
-function getDatabase(){
-	return mongo.db(connectionString, {safe:'true'}).collection(collection);
-}
+var provider = require('../RegistryProvider')
 
 /*
  * GET home page.
  */
 
 exports.index = function(req, res){
-	getDatabase().find().toArray(function (err, items) {
+	provider.getAll(function(err, items){
   		console.dir(items);
 		res.render('index', { title: 'Índice' });
 	});
@@ -49,7 +40,7 @@ exports.insertar = function(req, res){
 		high_risk: hr
 	};
 
-	getDatabase().insert(nuevoregistro, function(err, result) {
+	provider.insert(function(err, result) {
 
 		var id = 'Sin Respuesta';
 		if (err){
@@ -58,12 +49,12 @@ exports.insertar = function(req, res){
 		}
 
 		if(result){
-			id = new BSON.ObjectID(result._id).toString();
+			id = new provider.BSON.ObjectID(result._id).toString();
 	    	console.log(result);
 		}
 
 		res.render('codigo', {title: 'Identificador', identificador: id});
-	});
+	}, nuevoregistro);
 }
 
 
@@ -72,7 +63,7 @@ exports.insertar = function(req, res){
 */
 
 exports.eraseDatabase = function(req, res){
-	getDatabase().drop(function(err, data){
+	provider.drop(function(err, data){
 		exports.index(req, res);
 	});
 }
@@ -96,8 +87,7 @@ exports.alarma = function(req, res){
 			response.message = "ID debe ser de 24 dígitos";
 			res.json(response);
 		} else {
-			getDatabase().findOne({_id: new BSON.ObjectID(id)}, function(err, registro){
-
+			provider.getOne(function(err, registro){
 				if (!registro){
 					response.message = "Identificador Incorrecto";
 				} else {
@@ -109,8 +99,8 @@ exports.alarma = function(req, res){
 				}
 
 				res.json(response);
-			});
 
+			}, id);
 		}
 	} else {
 		res.json(response);
