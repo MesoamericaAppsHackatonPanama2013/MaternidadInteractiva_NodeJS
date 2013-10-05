@@ -50,7 +50,6 @@ exports.insertar = function(req, res){
 	};
 
 	getDatabase().insert(nuevoregistro, function(err, result) {
-		debugger;
 
 		var id = 'Sin Respuesta';
 		if (err){
@@ -59,7 +58,7 @@ exports.insertar = function(req, res){
 		}
 
 		if(result){
-			id = JSON.stringify(result);
+			id = new BSON.ObjectID(result._id).toString();
 	    	console.log(result);
 		}
 
@@ -78,6 +77,11 @@ exports.eraseDatabase = function(req, res){
 	});
 }
 
+
+/*
+ * POST: Alarma desde el servidor Android.
+ */
+
 exports.alarma = function(req, res){
 	id = req.body.id;
 	source = req.body.phone;
@@ -88,8 +92,8 @@ exports.alarma = function(req, res){
 	};
 
 	if (id){
-		if (Buffer.byteLength(id, 'utf8') != 12){
-			response.message = "ID debe ser de 12 dígitos";
+		if (Buffer.byteLength(id, 'utf8') != 24){
+			response.message = "ID debe ser de 24 dígitos";
 			res.json(response);
 		} else {
 			getDatabase().findOne({_id: new BSON.ObjectID(id)}, function(err, registro){
