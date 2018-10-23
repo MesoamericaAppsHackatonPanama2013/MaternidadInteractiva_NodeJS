@@ -2,11 +2,13 @@
 var nodemailer = require("nodemailer");
 var sender = "r.zubieta@nextlifesoft.com";
 
+var PASSWORD = ''
+
 var smtpTransport = nodemailer.createTransport("SMTP",{
    service: "Gmail",
    auth: {
        user: sender,
-       pass: "2321*Nextl"
+       pass: PASSWORD
    }
 });
 

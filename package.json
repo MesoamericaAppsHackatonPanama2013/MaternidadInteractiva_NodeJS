@@ -6,11 +6,12 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.3.x",
+    "express": "^3.21.0",
     "jade": "*",
     "less-middleware": "*",
     "mongoskin": "0.6.x",
-    "nodemailer": "0.5.x"
+    "nodemailer": "^4.6.8",
+    "pug": "^2.0.3"
   },
   "subdomain": "maternidadinteractiva",
   "engines": {

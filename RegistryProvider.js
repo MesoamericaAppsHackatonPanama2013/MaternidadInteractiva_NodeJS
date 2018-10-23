@@ -1,7 +1,7 @@
 var mongo = require('mongoskin');
 
 var collection = 'registros';
-var connectionString = "mongodb://nodejitsu_zubietaroberto:u63hfuu4171tlarho02sk0lic4@ds045998.mongolab.com:45998/nodejitsu_zubietaroberto_nodejitsudb2956975598";
+var connectionString = "";
 
 function getDatabase(){
 	return mongo.db(connectionString, {safe:'true'}).collection(collection);
